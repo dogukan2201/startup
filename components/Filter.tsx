@@ -10,23 +10,13 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { X } from "lucide-react-native";
 import { FilterType, FilterModalProps } from "@/types/type";
-
-const PRICE_RANGES = [
-  { label: "100-200 TL", min: 100, max: 200 },
-  { label: "200-300 TL", min: 200, max: 300 },
-  { label: "300-400 TL", min: 300, max: 400 },
-  { label: "400-500 TL", min: 400, max: 500 },
-  { label: "500-600 TL", min: 500, max: 600 },
-  { label: "600+ TL", min: 600, max: 999999 },
-];
-const EXPERIENCE_RANGES = [
-  { min: 1, max: 3 },
-  { min: 3, max: 5 },
-  { min: 5, max: null },
-];
-const LOCATIONS = ["Kadıköy", "Beşiktaş", "Şişli", "Üsküdar"];
-const SPECIALTIES = ["Saç Kesimi", "Sakal Tıraşı", "Saç Boyama"];
-const GENDERS = ["Erkek", "Kadın"];
+import {
+  PRICE_RANGES,
+  EXPERIENCE_RANGES,
+  LOCATIONS,
+  SPECIALTIES,
+  GENDERS,
+} from "@/constants";
 
 const FilterModal = ({
   visible,

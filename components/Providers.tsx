@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-const Providers = ({ navigation }: { navigation: any }) => {
+const Providers = () => {
   return (
     <View className="mt-8 mx-6">
       <View className="flex-row items-center justify-center mb-8">

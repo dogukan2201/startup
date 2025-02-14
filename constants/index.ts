@@ -8,6 +8,15 @@ export const images = {
   onBoardingImage3,
   signUpImage,
 };
+export const days = [
+  "Pazartesi",
+  "Salı",
+  "Çarşamba",
+  "Perşembe",
+  "Cuma",
+  "Cumartesi",
+  "Pazar",
+];
 
 export const onBoardingArray = [
   {
@@ -34,13 +43,14 @@ export const onBoardingArray = [
 ];
 //Normalde Database'den çekilecek veriler şu anlık uı için böyle
 
-export const hairModels = [
+export const Models = [
   {
     id: 1,
     name: "Modern Kesim",
     image:
       "https://images.unsplash.com/photo-1614465000772-1b302f406c47?q=80&w=2070&auto=format&fit=crop",
     description: "Şık ve modern görünüm için ideal kesim",
+    category: "men",
   },
   {
     id: 2,
@@ -48,6 +58,7 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=2070&auto=format&fit=crop",
     description: "Zamansız ve şık klasik saç modeli",
+    category: "men",
   },
   {
     id: 3,
@@ -55,6 +66,7 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=2074&auto=format&fit=crop",
     description: "Doğal ve hacimli görünüm",
+    category: "women",
   },
   {
     id: 4,
@@ -62,6 +74,7 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=2067&auto=format&fit=crop",
     description: "Modern ve bakımı kolay kesim",
+    category: "women",
   },
   {
     id: 5,
@@ -69,6 +82,7 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=2069&auto=format&fit=crop",
     description: "Hareketli ve feminen görünüm",
+    category: "women",
   },
   {
     id: 6,
@@ -76,6 +90,7 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?q=80&w=2070&auto=format&fit=crop",
     description: "Cesur ve modern kısa kesim",
+    category: "women",
   },
   {
     id: 7,
@@ -83,6 +98,7 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1584297091622-af8e5bd80b13?q=80&w=2080&auto=format&fit=crop",
     description: "Dikkat çekici modern tarz",
+    category: "women",
   },
   {
     id: 8,
@@ -90,6 +106,39 @@ export const hairModels = [
     image:
       "https://images.unsplash.com/photo-1596384361947-a9b26b051695?q=80&w=1974&auto=format&fit=crop",
     description: "Vintage görünümlü zarif model",
+    category: "women",
+  },
+  {
+    id: 9,
+    name: "Fransız Manikür",
+    image:
+      "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1974&auto=format&fit=crop",
+    description: "Klasik ve zarif tırnak tasarımı",
+    category: "nail",
+  },
+  {
+    id: 10,
+    name: "Geometrik Desen",
+    image:
+      "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1974&auto=format&fit=crop",
+    description: "Modern ve şık geometrik desenler",
+    category: "nail",
+  },
+  {
+    id: 11,
+    name: "Simli Ombre",
+    image:
+      "https://images.unsplash.com/photo-1607779097040-26e80aa4576f?q=80&w=1974&auto=format&fit=crop",
+    description: "Göz alıcı simli geçişler",
+    category: "nail",
+  },
+  {
+    id: 12,
+    name: "Minimal Art",
+    image:
+      "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1974&auto=format&fit=crop",
+    description: "Sade ve şık minimal tasarımlar",
+    category: "nail",
   },
 ];
 //Normalde Database'den çekilecek veriler şu anlık uı için böyle
@@ -345,4 +394,25 @@ export const barbers = [
     workDays: ["Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"],
     languages: ["Türkçe", "İngilizce"],
   },
+];
+export const PRICE_RANGES = [
+  { label: "100-200 TL", min: 100, max: 200 },
+  { label: "200-300 TL", min: 200, max: 300 },
+  { label: "300-400 TL", min: 300, max: 400 },
+  { label: "400-500 TL", min: 400, max: 500 },
+  { label: "500-600 TL", min: 500, max: 600 },
+  { label: "600+ TL", min: 600, max: 999999 },
+];
+export const EXPERIENCE_RANGES = [
+  { min: 1, max: 3 },
+  { min: 3, max: 5 },
+  { min: 5, max: null },
+];
+export const LOCATIONS = ["Kadıköy", "Beşiktaş", "Şişli", "Üsküdar"];
+export const SPECIALTIES = ["Saç Kesimi", "Sakal Tıraşı", "Saç Boyama"];
+export const GENDERS = ["Erkek", "Kadın"];
+export const CATEGORIES = [
+  { id: "men", name: "Erkek Saç" },
+  { id: "women", name: "Kadın Saç" },
+  { id: "nail", name: "Tırnak" },
 ];

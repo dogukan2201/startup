@@ -44,7 +44,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="barbers"
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
@@ -59,7 +59,7 @@ export default function Layout() {
               }}
             >
               <Ionicons
-                name="person"
+                name="people-circle-outline"
                 size={focused ? 30 : 24}
                 color={focused ? "#fff" : "#c4c4c4"}
               />
@@ -67,8 +67,9 @@ export default function Layout() {
           ),
         }}
       />
+
       <Tabs.Screen
-        name="hairModels"
+        name="catalog"
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
@@ -92,7 +93,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="barbers"
+        name="profile"
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => (
@@ -107,7 +108,7 @@ export default function Layout() {
               }}
             >
               <Ionicons
-                name="people-circle-outline"
+                name="person"
                 size={focused ? 30 : 24}
                 color={focused ? "#fff" : "#c4c4c4"}
               />

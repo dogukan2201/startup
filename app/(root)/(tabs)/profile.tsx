@@ -7,7 +7,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { useClerk, useUser } from "@clerk/clerk-expo";
@@ -17,7 +16,6 @@ import {
   Phone,
   MapPin,
   LogOut,
-  AlertCircle,
   Settings,
   Camera,
   Shield,
@@ -25,6 +23,8 @@ import {
   HelpCircle,
 } from "lucide-react-native";
 import { router } from "expo-router";
+import { MenuButton } from "@/components/ProfileMenuButton";
+import { ProfileInfoItem } from "@/components/ProfileInfoItem";
 
 const ProfileScreen = () => {
   const { user } = useUser();
@@ -42,46 +42,6 @@ const ProfileScreen = () => {
       setIsLoading(false);
     }
   };
-
-  const ProfileInfoItem = ({ icon: Icon, label, value }) => (
-    <View className="flex-row items-center mb-4 bg-white p-4 rounded-xl ">
-      <View className="bg-blue-50 p-2 rounded-lg">
-        <Icon size={20} color="#4F46E5" />
-      </View>
-      <View className="ml-4 flex-1">
-        <Text className="text-sm text-gray-500 font-medium">{label}</Text>
-        <Text className="text-base text-gray-900 font-semibold mt-1">
-          {value || "N/A"}
-        </Text>
-      </View>
-    </View>
-  );
-
-  const MenuButton = ({
-    icon: Icon,
-    title,
-    onPress,
-    color = "#4F46E5",
-    danger = false,
-  }) => (
-    <TouchableOpacity
-      onPress={onPress}
-      className={`flex-row items-center p-4 bg-white rounded-xl  mb-3`}
-      activeOpacity={0.7}
-    >
-      <View className={`p-2 rounded-lg ${danger ? "bg-red-50" : "bg-blue-50"}`}>
-        <Icon size={20} color={danger ? "#EF4444" : color} />
-      </View>
-      <Text
-        className={`flex-1 ml-4 font-medium ${
-          danger ? "text-red-600" : "text-gray-900"
-        }`}
-      >
-        {title}
-      </Text>
-      <AlertCircle size={18} color="#9CA3AF" />
-    </TouchableOpacity>
-  );
 
   const confirmSignOut = () => {
     Alert.alert(
@@ -111,12 +71,9 @@ const ProfileScreen = () => {
               source={{
                 uri: user?.imageUrl || "https://via.placeholder.com/150",
               }}
-              className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
+              className="w-32 h-32 rounded-full  shadow-lg"
             />
-            <TouchableOpacity
-              className="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-lg"
-              activeOpacity={0.8}
-            >
+            <TouchableOpacity className="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-lg">
               <Camera color="#4F46E5" />
             </TouchableOpacity>
           </View>
@@ -143,11 +100,6 @@ const ProfileScreen = () => {
             label="Telefon"
             value={user?.primaryPhoneNumber?.phoneNumber}
           />
-          <ProfileInfoItem
-            icon={MapPin}
-            label="Adres"
-            value={user?.publicMetadata?.address || "N/A"}
-          />
         </View>
 
         <View className="px-6 pb-8">
@@ -160,37 +112,27 @@ const ProfileScreen = () => {
             title="Bildirim Ayarları"
             onPress={() => {}}
           />
-
           <MenuButton
             icon={Shield}
             title="Güvenlik ve Gizlilik"
             onPress={() => {}}
           />
-
           <MenuButton
             icon={HelpCircle}
             title="Yardım ve Destek"
             onPress={() => {}}
           />
-
           <MenuButton
             icon={Settings}
             title="Genel Ayarlar"
             onPress={() => {}}
           />
-
           <MenuButton
             icon={LogOut}
             title="Çıkış Yap"
             onPress={confirmSignOut}
             danger
           />
-
-          {isLoading && (
-            <View className="mt-4 items-center">
-              <ActivityIndicator size="large" color="#4F46E5" />
-            </View>
-          )}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -28,28 +28,6 @@ export interface Meeting {
   customer: User;
 }
 
-export interface Barber extends User {
-  experience: number;
-  image: string;
-  description: string;
-  availability: string[];
-  rating: number;
-  reviews: number;
-  services: Service[];
-  meetings: Meeting[];
-  workingHours: { day: string; open: string; close: string }[];
-  socialMedia?: {
-    instagram?: string;
-  };
-}
-
-export interface Service {
-  id: string;
-  name: string;
-  price: number;
-  duration: number;
-  description?: string;
-}
 export interface FilterType {
   rating: number | null;
   experience: any | null;
@@ -64,4 +42,24 @@ export interface FilterModalProps {
   onClose: () => void;
   onSubmit: (filters: FilterType) => void;
   initialFilters: FilterType;
+}
+export interface Service {
+  name: string;
+  price: number;
+}
+
+export interface WorkingHours {
+  start: string;
+  end: string;
+}
+
+export interface Barber {
+  services?: Service[];
+  workingHours?: WorkingHours;
+}
+
+export interface AppointmentProps {
+  isVisible: boolean;
+  onClose: () => void;
+  barber: Barber;
 }
