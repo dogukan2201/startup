@@ -84,20 +84,23 @@ const SignUp = () => {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : undefined}
-      className="flex-1 bg-white"
+      className="flex-1 bg-white items-center justify-center"
     >
-      <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        <View className="w-full h-[250px] relative">
+      <ScrollView
+        className="flex-1 w-full"
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="w-full h-[280px] relative">
           <Image
             source={images.signUpImage}
-            className="w-full h-[250px]"
+            className="w-full h-[280px]"
             resizeMode="cover"
           />
           <View className="absolute inset-0 bg-black/20" />
         </View>
 
         <View className="px-6 -mt-10 rounded-t-[30px] bg-white pt-8 pb-10">
-          <Text className="text-3xl text-gray-900 font-bold mb-2">
+          <Text className="text-3xl text-[#4F46E5] font-bold mb-2">
             Create Account
           </Text>
           <Text className="text-gray-500 text-base mb-8">
@@ -106,28 +109,30 @@ const SignUp = () => {
 
           <View className="space-y-4">
             <View>
-              <Text className="text-gray-700 text-sm mb-2 ml-2">Full Name</Text>
+              <Text className="text-[#4F46E5] text-lg   mb-2 ml-2">
+                Full Name
+              </Text>
               <View className="flex-row items-center bg-gray-50 rounded-2xl px-4">
-                <Ionicons name="person-outline" size={20} color="#6B7280" />
+                <Ionicons name="person-outline" size={20} color="#4F46E5" />
                 <TextInput
                   placeholder="Enter your name"
                   value={form.name}
                   onChangeText={(text) => setForm({ ...form, name: text })}
-                  className="flex-1 p-4 text-[16px] text-gray-900"
+                  className="flex-1 p-4 text-[16px] text-[#4F46E5]"
                   placeholderTextColor="#9CA3AF"
                 />
               </View>
             </View>
 
             <View>
-              <Text className="text-gray-700 text-sm mb-2 ml-2">Email</Text>
+              <Text className="text-[#4F46E5] text-lg   mb-2 ml-2">Email</Text>
               <View className="flex-row items-center bg-gray-50 rounded-2xl px-4">
-                <Ionicons name="mail-outline" size={20} color="#6B7280" />
+                <Ionicons name="mail-outline" size={20} color="#4F46E5" />
                 <TextInput
                   placeholder="Enter your email"
                   value={form.email}
                   onChangeText={(text) => setForm({ ...form, email: text })}
-                  className="flex-1 p-4 text-[16px] text-gray-900"
+                  className="flex-1 p-4 text-[16px] text-[#4F46E5]"
                   placeholderTextColor="#9CA3AF"
                   keyboardType="email-address"
                   autoCapitalize="none"
@@ -136,12 +141,14 @@ const SignUp = () => {
             </View>
 
             <View>
-              <Text className="text-gray-700 text-sm mb-2 ml-2">Password</Text>
+              <Text className="text-[#4F46E5] text-lg   mb-2 ml-2">
+                Password
+              </Text>
               <View className="flex-row items-center bg-gray-50 rounded-2xl px-4">
                 <Ionicons
                   name="lock-closed-outline"
                   size={20}
-                  color="#6B7280"
+                  color="#4F46E5"
                 />
                 <TextInput
                   placeholder="Enter your password"
@@ -155,7 +162,7 @@ const SignUp = () => {
                   <Ionicons
                     name={showPassword ? "eye-outline" : "eye-off-outline"}
                     size={20}
-                    color="#6B7280"
+                    color="#4F46E5"
                   />
                 </Pressable>
               </View>
@@ -163,7 +170,7 @@ const SignUp = () => {
 
             <TouchableOpacity
               onPress={onSignUpPress}
-              className="bg-blue-600 rounded-full py-4 mt-6"
+              className="bg-[#4F46E5] rounded-full py-4 mt-6"
             >
               <Text className="text-white text-center text-2xl font-semibold">
                 Sign Up
@@ -173,11 +180,11 @@ const SignUp = () => {
             <Providers />
 
             <View className="flex-row justify-center mt-8">
-              <Text className="text-gray-500">Already have an account? </Text>
+              <Text className="text-gray-500">Already have an account ? </Text>
               <TouchableOpacity
                 onPress={() => router.replace("/(auth)/sign-in")}
               >
-                <Text className="text-blue-600 font-semibold">Log In</Text>
+                <Text className="text-[#4F46E5] font-semibold">Log In</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -202,7 +209,11 @@ const SignUp = () => {
               </Text>
               <Text className="p-2 text-3xl font-bold">Code</Text>
               <View className="flex-row p-2  items-center border border-gray-300 rounded-full px-4 py-3 bg-gray-50">
-                <Ionicons name="lock-closed-outline" size={24} color="gray" />
+                <Ionicons
+                  name="lock-closed-outline"
+                  size={24}
+                  color="#4F46E5"
+                />
                 <TextInput
                   placeholder="Enter the code"
                   className="flex-1 text-xl"
@@ -220,7 +231,7 @@ const SignUp = () => {
               )}
               <TouchableOpacity
                 onPress={onVerifyPress}
-                className="flex-row items-center justify-center space-x-2 bg-green-600 py-3 px-6 rounded-full active:bg-blue-700 mt-4"
+                className="flex-row items-center justify-center space-x-2 bg-[#4F46E5] py-3 px-6 rounded-full active:bg-blue-700 mt-4"
               >
                 <Ionicons
                   name="checkmark-circle-outline"

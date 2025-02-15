@@ -13,12 +13,12 @@ const Providers = () => {
       <View className="flex-row justify-center space-x-6">
         <TouchableOpacity className="w-[64] h-[64] rounded-[16] bg-white items-center justify-center elevation-1">
           <View className="items-center justify-center">
-            <Ionicons name="logo-google" size={32} color="#EA4335" />
+            <Ionicons name="logo-google" size={32} color="#4F46E5" />
           </View>
         </TouchableOpacity>
         <TouchableOpacity className="w-[64] h-[64] rounded-[16] bg-white items-center justify-center elevation-1">
           <View className="items-center justify-center">
-            <Ionicons name="logo-facebook" size={32} color="#1877F2" />
+            <Ionicons name="logo-facebook" size={32} color="#4F46E5" />
           </View>
         </TouchableOpacity>
       </View>
