@@ -14,7 +14,6 @@ import {
   Mail,
   User,
   Phone,
-  MapPin,
   LogOut,
   Settings,
   Camera,
@@ -71,17 +70,17 @@ const ProfileScreen = () => {
               source={{
                 uri: user?.imageUrl || "https://via.placeholder.com/150",
               }}
-              className="w-32 h-32 rounded-full  shadow-lg"
+              className="w-28 h-28 rounded-full  shadow-lg"
             />
             <TouchableOpacity className="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-lg">
-              <Camera color="#4F46E5" />
+              <Camera color="#4F46E5" size={20} />
             </TouchableOpacity>
           </View>
           <Text className="mt-4 text-2xl font-bold text-gray-900">
             {user?.fullName || "Kullanıcı"}
           </Text>
           <Text className="text-gray-500 font-medium">
-            {user?.primaryEmailAddress?.emailAddress}
+            {user?.emailAddresses[0].emailAddress}
           </Text>
         </View>
 
@@ -93,12 +92,12 @@ const ProfileScreen = () => {
           <ProfileInfoItem
             icon={Mail}
             label="E-posta"
-            value={user?.primaryEmailAddress?.emailAddress}
+            value={user?.emailAddresses[0]?.emailAddress}
           />
           <ProfileInfoItem
             icon={Phone}
             label="Telefon"
-            value={user?.primaryPhoneNumber?.phoneNumber}
+            value={user?.phoneNumbers[0]?.phoneNumber}
           />
         </View>
 

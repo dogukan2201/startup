@@ -3,7 +3,7 @@ import { View, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { Star } from "lucide-react-native";
 
 export const ModelCard = ({ model, isFavorite, onToggleFavorite }) => (
-  <View style={[styles.card, { width: "47%" }]}>
+  <View style={[styles.card, { width: "49%" }]}>
     <View style={styles.relative}>
       <Image
         source={{ uri: model.image }}

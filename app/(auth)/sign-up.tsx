@@ -170,7 +170,7 @@ const SignUp = () => {
               </Text>
             </TouchableOpacity>
 
-            <Providers navigation={undefined} />
+            <Providers />
 
             <View className="flex-row justify-center mt-8">
               <Text className="text-gray-500">Already have an account? </Text>

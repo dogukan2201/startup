@@ -48,7 +48,7 @@ const HairModels = () => {
             </View>
             <TouchableOpacity
               onPress={() => setShowOnlyFavorites(!showOnlyFavorites)}
-              className="bg-indigo-600 px-6 py-3.5 rounded-full flex-row items-center"
+              className="bg-indigo-600 px-3 py-3 rounded-2xl flex-row items-center"
             >
               {showOnlyFavorites ? (
                 <Filter size={20} color="white" />

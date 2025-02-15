@@ -62,7 +62,7 @@ const BarberShowInfo = () => {
           </View>
           <View className="flex-row items-center mt-4">
             <Star size={20} color="#4F46E5" fill={"#4F46E5"} />
-            <Text className="text-base font-semibold ml-1">
+            <Text className="font-semibold text-[#4F46E5] text-xl  ml-1">
               {barber.rating}
             </Text>
             <Text className="text-gray-500 ml-1">

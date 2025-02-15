@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 
 export const ProfileInfoItem = ({ icon: Icon, label, value }) => (
-  <View className="flex-row items-center mb-4 bg-white p-4 rounded-xl">
+  <View className="flex-row items-center mb-2 bg-white p-4 rounded-xl">
     <View className="bg-blue-50 p-2 rounded-lg">
       <Icon size={20} color="#4F46E5" />
     </View>

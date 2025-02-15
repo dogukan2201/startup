@@ -130,7 +130,7 @@ Onaylıyor musunuz?`,
     return (
       <TouchableOpacity
         key={index}
-        className={`w-[48%] px-2 py-3 border rounded-xl mb-3 border-gray-200 ${
+        className={`w-[48%] px-2 py-3 border rounded-xl mb-2 border-gray-200 ${
           isSelected && "bg-[#4F46E5]"
         }`}
         onPress={() => handleTimeSelection(time)}
@@ -167,7 +167,7 @@ Onaylıyor musunuz?`,
           <ScrollView showsVerticalScrollIndicator={true}>
             <View className="space-y-6">
               <View>
-                <Text className="text-lg font-semibold text-gray-800 mb-3">
+                <Text className="text-lg font-semibold text-gray-800 mb-2">
                   Hizmet Seçin
                 </Text>
                 <View className="space-y-2">
@@ -176,7 +176,7 @@ Onaylıyor musunuz?`,
               </View>
 
               <View>
-                <Text className="text-lg font-semibold text-gray-800 mb-3">
+                <Text className="text-lg font-semibold text-gray-800 mb-2">
                   Tarih Seçin
                 </Text>
                 <TouchableOpacity
@@ -206,10 +206,10 @@ Onaylıyor musunuz?`,
               </View>
 
               <View>
-                <Text className="text-lg font-semibold text-gray-800 mb-3">
+                <Text className="text-lg font-semibold text-gray-800 mb-2">
                   Saat Seçin
                 </Text>
-                <View className="flex-row flex-wrap justify-between">
+                <View className="flex-row flex-wrap justify-between ">
                   {timeSlots.map(renderTimeSlot)}
                 </View>
               </View>

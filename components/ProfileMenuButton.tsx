@@ -11,7 +11,7 @@ export const MenuButton = ({
 }) => (
   <TouchableOpacity
     onPress={onPress}
-    className={`flex-row items-center p-4 bg-white rounded-xl mb-3`}
+    className={`flex-row items-center p-4 bg-white rounded-xl mb-2 `}
     activeOpacity={0.7}
   >
     <View className={`p-2 rounded-lg ${danger ? "bg-red-50" : "bg-blue-50"}`}>

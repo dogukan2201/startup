@@ -153,7 +153,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Kesimi", "Saç Boyama", "Keratin Bakım"],
-    location: "Caferağa Mah. Moda Cad. No:15/A, Kadıköy, İstanbul",
+    location: {
+      address: "Caferağa Mah. Moda Cad. No:15/A",
+      district: "Kadıköy",
+      city: "İstanbul",
+    },
     phone: "+90 532 123 45 67",
     experience: 12,
     workingHours: { start: "09:00", end: "19:00" },
@@ -184,7 +188,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Kesimi", "Sakal Tıraşı", "Modern Kesimler"],
-    location: "Sinanpaşa Mah. Beşiktaş Cad. No:25, Beşiktaş, İstanbul",
+    location: {
+      address: "Sinanpaşa Mah. Beşiktaş Cad. No:25",
+      district: "Beşiktaş",
+      city: "İstanbul",
+    },
     phone: "+90 533 234 56 78",
     experience: 8,
     workingHours: { start: "10:00", end: "20:00" },
@@ -208,7 +216,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Kesimi", "Sakal Tıraşı", "Özel Tasarım"],
-    location: "Meşrutiyet Mah. Halaskargazi Cad. No:45, Şişli, İstanbul",
+    location: {
+      address: "Kadife Sok. No:15",
+      district: "Şişli",
+      city: "İstanbul",
+    },
     phone: "+90 535 345 67 89",
     experience: 15,
     workingHours: { start: "11:00", end: "21:00" },
@@ -239,7 +251,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Kesimi", "Sakal Tıraşı", "Çocuk Kesimi"],
-    location: "İncirli Cad. No:35/B, Bakırköy, İstanbul",
+    location: {
+      address: "İncirli Cad. No:35/B",
+      district: "Bakırköy",
+      city: "İstanbul",
+    },
     phone: "+90 536 456 78 90",
     experience: 2,
     workingHours: { start: "09:00", end: "18:00" },
@@ -263,7 +279,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1504703395950-b89145a5425b?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Kesimi", "Kadın Saç Tasarımı", "Gelin Saçı"],
-    location: "Atatürk Mah. Meriç Cad. No:55, Ataşehir, İstanbul",
+    location: {
+      address: "Atatürk Mah. Meriç Cad. No:55",
+      district: "Ataşehir",
+      city: "İstanbul",
+    },
     phone: "+90 537 567 89 01",
     experience: 5,
     workingHours: { start: "10:00", end: "22:00" },
@@ -287,7 +307,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Boyama", "Örgü Modelleri", "Topuz"],
-    location: "Mimar Sinan Mah. Çavuşdere Cad. No:85, Üsküdar, İstanbul",
+    location: {
+      address: "Mimar Sinan Mah. Çavuşdere Cad. No:85",
+      district: "Üsküdar",
+      city: "İstanbul",
+    },
     phone: "+90 538 678 90 12",
     experience: 7,
     workingHours: { start: "11:00", end: "20:00" },
@@ -311,7 +335,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Modern Kesimler", "Sakal Tasarımı"],
-    location: "Barış Mah. Beylikdüzü Cad. No:95, Beylikdüzü, İstanbul",
+    location: {
+      address: "Barış Mah. Beylikdüzü Cad. No:95",
+      district: "Beylikdüzü",
+      city: "İstanbul",
+    },
     phone: "+90 539 789 01 23",
     experience: 3,
     workingHours: { start: "12:00", end: "21:00" },
@@ -334,7 +362,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Renklendirme", "Gelin Saçı", "Kalıcı Fön"],
-    location: "Bağlarbaşı Mah. Maltepe Cad. No:75, Maltepe, İstanbul",
+    location: {
+      address: "Bağlarbaşı Mah. Maltepe Cad. No:75",
+      district: "Maltepe",
+      city: "İstanbul",
+    },
     phone: "+90 531 890 12 34",
     experience: 20,
     workingHours: { start: "09:00", end: "20:00" },
@@ -358,7 +390,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Klasik Kesim", "Çocuk Tıraşı"],
-    location: "Velibaba Mah. Pendik Cad. No:65, Pendik, İstanbul",
+    location: {
+      address: "Velibaba Mah. Pendik Cad. No:65",
+      district: "Pendik",
+      city: "İstanbul",
+    },
     phone: "+90 532 901 23 45",
     experience: 1,
     workingHours: { start: "10:00", end: "19:00" },
@@ -381,7 +417,11 @@ export const barbers = [
     image:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2070&auto=format&fit=crop",
     specialty: ["Saç Kesimi", "Maşa", "Topuz"],
-    location: "Yalı Mah. Beykoz Cad. No:105, Beykoz, İstanbul",
+    location: {
+      address: "Yalı Mah. Beykoz Cad. No:105",
+      district: "Beykoz",
+      city: "İstanbul",
+    },
     phone: "+90 533 012 34 56",
     experience: 9,
     workingHours: { start: "11:00", end: "21:00" },
@@ -415,4 +455,18 @@ export const CATEGORIES = [
   { id: "men", name: "Erkek Saç" },
   { id: "women", name: "Kadın Saç" },
   { id: "nail", name: "Tırnak" },
+];
+export const TURKISH_CHAR_MAP = {
+  ı: "i",
+  ş: "s",
+  ö: "o",
+  ç: "c",
+  ğ: "g",
+  ü: "u",
+};
+export const SERVICES = [
+  "Saç Kesimi",
+  "Sakal Tıraşı",
+  "Saç Boyama",
+  "Cilt Bakımı",
 ];

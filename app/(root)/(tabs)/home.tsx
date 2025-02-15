@@ -1,72 +1,80 @@
 import { SignedIn, useUser } from "@clerk/clerk-expo";
-import { SafeAreaView, Text, View, ScrollView, Image } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { barbers, SERVICES } from "@/constants";
+import { MapPin, Scissors } from "lucide-react-native";
+import { useState } from "react";
+import { AppointmentCard } from "@/components/AppointmentCard";
+import { ServiceCard } from "@/components/ServiceCard";
+import { PopulerBarberCard } from "@/components/PopulerBarberCard";
+import { UserProfile } from "@/components/HomeUserProfile";
+import { QuickAccessCard } from "@/components/QuickAccessCard";
 
 export default function Home() {
   const { user } = useUser();
-  const services = ["Saç Kesimi", "Sakal Tıraşı", "Saç Boyama", "Cilt Bakımı"];
-  const popularBarbers = ["Sergen", "Osman", "Mehmet"];
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => setRefreshing(false), 2000);
+  };
+
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-gray-50">
       <SignedIn>
-        <ScrollView className="flex-1">
-          <View className="px-4 py-6">
-            <View className="flex-row items-center justify-between mb-6">
-              <View className="flex-col ">
-                <View>
-                  <Image
-                    source={{
-                      uri: user?.imageUrl || "https://via.placeholder.com/150",
-                    }}
-                    className="w-14 h-14 rounded-full "
-                  />
-                </View>
-                <Text className="text-2xl font-bold text-gray-900">
-                  Merhaba,
-                </Text>
-                <Text className="text-lg text-gray-600">
-                  {user?.emailAddresses[0].emailAddress}
-                </Text>
-              </View>
+        <ScrollView
+          className="flex-1"
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
+        >
+          <View className="px-6 py-8">
+            <View className="flex-row items-center justify-between mb-8">
+              <UserProfile user={user} />
+              <TouchableOpacity className="p-2 bg-indigo-100 rounded-full">
+                <Ionicons
+                  name="notifications-outline"
+                  size={24}
+                  color="#4F46E5"
+                />
+              </TouchableOpacity>
             </View>
-            <View className="bg-gray-50 rounded-xl p-4 mb-6">
-              <Text className="text-lg font-semibold mb-2">
-                Yaklaşan Randevunuz
-              </Text>
-              <View className="flex-row items-center space-x-3">
-                <Ionicons name="calendar-outline" size={20} color="#4B5563" />
-                <Text className="text-gray-600 font-medium pl-1">
-                  Randevunuz Bulunmamaktadır
-                </Text>
-              </View>
+
+            <AppointmentCard />
+
+            <View className="flex-row justify-between mb-8">
+              <QuickAccessCard
+                icon={MapPin}
+                title="Konumumuz"
+                subtitle="En yakın şube"
+              />
+              <QuickAccessCard
+                icon={Scissors}
+                title="Kampanyalar"
+                subtitle="Fırsatları kaçırma"
+              />
             </View>
-            <Text className="text-lg font-semibold mb-4">
-              Popüler Berberler
-            </Text>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={true}
-              className="mb-6"
-            >
-              {popularBarbers.map((item) => (
-                <View key={item} className="mr-4 w-40">
-                  <View className="bg-gray-200 h-40 rounded-lg mb-2" />
-                  <Text className="font-medium">Berber {item}</Text>
-                  <Text className="text-gray-500">4.5 ★</Text>
-                </View>
-              ))}
+
+            <Text className="text-2xl font-semibold mb-4">Popülerler</Text>
+            <ScrollView horizontal className="mb-8">
+              <View className="flex-row">
+                {barbers.map((barber) => (
+                  <PopulerBarberCard key={barber.id} barber={barber} />
+                ))}
+              </View>
             </ScrollView>
 
-            <Text className="text-lg font-semibold mb-4">Hizmetlerimiz</Text>
+            <Text className="text-2xl font-semibold mb-4">Hizmetlerimiz</Text>
             <View className="flex-row flex-wrap justify-between">
-              {services.map((service) => (
-                <View
-                  key={service}
-                  className="w-[48%] bg-gray-50 rounded-lg p-4 mb-4"
-                >
-                  <Text className="font-medium">{service}</Text>
-                  <Text className="text-gray-500">Detaylar için tıklayın</Text>
-                </View>
+              {SERVICES.map((service) => (
+                <ServiceCard key={service} service={service} />
               ))}
             </View>
           </View>

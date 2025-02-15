@@ -12,6 +12,7 @@ import React, { useState, useMemo } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import FilterModal from "@/components/Filter";
 import { BarberCard } from "@/components/RenderCard";
+import { TURKISH_CHAR_MAP } from "@/constants";
 const Barbers = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilter, setShowFilter] = useState(false);
@@ -24,15 +25,18 @@ const Barbers = () => {
     gender: null,
   });
 
+  const normalizeSearchQuery = (text) => {
+    return text
+      .toLocaleLowerCase("tr")
+      .replace(/[ışöçğü]/g, (char) => TURKISH_CHAR_MAP[char]);
+  };
+
   const matchesSearchCriteria = (barber, query) => {
-    return (
-      barber.name
-        .toLocaleLowerCase("tr")
-        .includes(query.toLocaleLowerCase("tr")) ||
-      barber.location
-        .toLocaleLowerCase("tr")
-        .includes(query.toLocaleLowerCase("tr"))
-    );
+    const normalizedQuery = normalizeSearchQuery(query);
+
+    return ["name", "location.city", "location.district", "location.address"]
+      .map((key) => key.split(".").reduce((obj, k) => obj[k], barber))
+      .some((value) => normalizeSearchQuery(value).includes(normalizedQuery));
   };
 
   const matchesFilterCriteria = (barber, filters) => {
@@ -45,7 +49,8 @@ const Barbers = () => {
       (barber.experience >= experience.min &&
         (!experience.max || barber.experience <= experience.max));
 
-    const matchesLocation = !location || barber.location.includes(location);
+    const matchesLocation =
+      !location || barber.location.district.includes(location);
 
     const matchesPrice =
       (price.min === 0 && price.max === 0) ||
@@ -92,7 +97,7 @@ const Barbers = () => {
           </View>
           <TouchableOpacity
             onPress={() => setShowFilter(true)}
-            className="bg-indigo-600 px-5 py-3 rounded-2xl flex-row items-center"
+            className="bg-indigo-600 px-4 py-3 rounded-2xl flex-row items-center"
           >
             <FilterIcon size={18} color="white" />
             <Text className="text-white font-semibold ml-2">Filtrele</Text>

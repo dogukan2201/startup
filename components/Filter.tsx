@@ -74,7 +74,7 @@ const FilterModal = ({
 
               <View className="space-y-6">
                 <View>
-                  <Text className="text-base font-semibold text-gray-700 mb-3">
+                  <Text className="text-base font-semibold text-gray-700 mb-2">
                     Puan
                   </Text>
                   <View className="flex-row space-x-4">
@@ -103,7 +103,7 @@ const FilterModal = ({
                 </View>
 
                 <View>
-                  <Text className="text-base font-semibold text-gray-700 mb-3">
+                  <Text className="text-base font-semibold text-gray-700 mb-2">
                     Fiyat Aralığı
                   </Text>
                   <View className="flex-row flex-wrap gap-2">
@@ -145,7 +145,7 @@ const FilterModal = ({
                 </View>
 
                 <View>
-                  <Text className="text-base font-semibold text-gray-700 mb-3">
+                  <Text className="text-base font-semibold text-gray-700 mb-2">
                     Deneyim
                   </Text>
                   <View className="flex-row flex-wrap gap-2">
@@ -178,7 +178,7 @@ const FilterModal = ({
                 </View>
 
                 <View>
-                  <Text className="text-base font-semibold text-gray-700 mb-3">
+                  <Text className="text-base font-semibold text-gray-700 mb-2">
                     Lokasyon
                   </Text>
                   <View className="flex-row flex-wrap gap-2">
@@ -207,7 +207,7 @@ const FilterModal = ({
                 </View>
 
                 <View>
-                  <Text className="text-base font-semibold text-gray-700 mb-3">
+                  <Text className="text-base font-semibold text-gray-700 mb-2">
                     Uzmanlık
                   </Text>
                   <View className="flex-row flex-wrap gap-2">
@@ -236,7 +236,7 @@ const FilterModal = ({
                 </View>
 
                 <View>
-                  <Text className="text-base font-semibold text-gray-700 mb-3">
+                  <Text className="text-base font-semibold text-gray-700 mb-2">
                     Cinsiyet
                   </Text>
                   <View className="flex-row gap-2">
