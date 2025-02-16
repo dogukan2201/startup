@@ -32,7 +32,15 @@ export default function RootLayout() {
       <ClerkLoaded>
         <Stack>
           <Stack.Screen name="index" />
-          <Stack.Screen name="(root)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(root)/(customer)"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(root)/(barbers)"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="(barbers)" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>

@@ -2,10 +2,11 @@ import { router, Stack } from "expo-router";
 import { TouchableOpacity, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function RLayout() {
+export default function CustomerLayout() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(customer)" options={{ headerShown: false }} />
       <Stack.Screen
         name="[id]"
         options={{
