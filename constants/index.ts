@@ -484,11 +484,18 @@ export const MONTHS = [
   "Kasım",
   "Aralık",
 ];
+
+export const APPOINTMENTS_FILTERS = [
+  "Tümü",
+  "Tamamlandı",
+  "Devam Ediyor",
+  "Yaklaşan",
+];
 export const APPOINTMENTS = [
   {
     id: 1,
     time: "09:00",
-    date: "12 Mart 2024",
+    date: "2025-02-17",
     customerName: "Mehmet Kaya",
     customerPhone: "+90 532 123 45 67",
     service: ["Saç Kesimi", "Sakal Tıraşı"],
@@ -499,7 +506,7 @@ export const APPOINTMENTS = [
   {
     id: 2,
     time: "10:00",
-    date: "12 Mart 2024",
+    date: "2025-02-17",
     customerName: "Ali Demir",
     customerPhone: "+90 533 234 56 78",
     service: ["Saç Kesimi", "Sakal Tıraşı"],
@@ -510,7 +517,7 @@ export const APPOINTMENTS = [
   {
     id: 3,
     time: "11:30",
-    date: "12 Mart 2024",
+    date: "2025-02-17",
     customerName: "Mustafa Çelik",
     customerPhone: "+90 535 345 67 89",
     service: ["Saç Kesimi", "Sakal Tıraşı"],
@@ -521,7 +528,7 @@ export const APPOINTMENTS = [
   {
     id: 4,
     time: "14:00",
-    date: "12 Mart 2024",
+    date: "2025-02-18",
     customerName: "Kerem Can",
     customerPhone: "+90 536 456 78 90",
     service: ["Saç Kesimi", "Sakal Tıraşı"],
@@ -529,10 +536,4 @@ export const APPOINTMENTS = [
     status: "Yaklaşan",
     notes: "Cilt hassasiyeti var",
   },
-];
-export const APPOINTMENTS_FILTERS = [
-  "Tümü",
-  "Tamamlandı",
-  "Devam Ediyor",
-  "Yaklaşan",
 ];

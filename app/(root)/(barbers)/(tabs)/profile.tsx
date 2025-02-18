@@ -62,9 +62,9 @@ const ProfileScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView className="flex-1 bg-gray-100">
       <ScrollView className="flex-1">
-        <View className="items-center mt-8 mb-6">
+        <View className="items-center mt-8 mb-6 ">
           <View className="relative">
             <Image
               source={{
