@@ -8,58 +8,140 @@ import {
   Image,
   StatusBar,
 } from "react-native";
-import React, { useState, useEffect } from "react";
-import { barbers } from "@/constants";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-const Presentation = () => {
-  const [barberData, setBarberData] = useState({
-    name: "",
-    image: "",
-    experience: "",
-    specialty: "",
-    workingHours: "",
-    location: "",
-    phone: "",
-    description: "",
-    services: [],
-    workDays: [],
-    rating: 0,
-    reviewCount: 0,
-  });
+const InputField = ({
+  label,
+  value,
+  onChangeText,
+  multiline = false,
+  icon,
+  placeholder,
+  type,
+}) => {
+  const baseInputStyle = "flex-1 p-4 text-base text-gray-800 bg-gray-50";
+  const baseIconContainerStyle =
+    "p-4 bg-gray-100 rounded-l-xl border-r border-gray-200";
 
-  const [newService, setNewService] = useState({ name: "", price: "" });
+  const renderInput = () => {
+    const commonProps = {
+      className: baseInputStyle,
+      value,
+      placeholder,
+      placeholderTextColor: "#9CA3AF",
+    };
 
-  const InputField = ({
-    label,
-    value,
-    onChangeText,
-    multiline = false,
-    icon,
-  }) => (
-    <View className="mb-6">
-      <Text className="text-gray-700 text-base font-medium mb-2">{label}</Text>
-      <View className="flex-row items-center border-2 border-gray-100 rounded-2xl bg-white overflow-hidden">
-        <View className="p-4 bg-gray-50">
-          <Ionicons name={icon} size={20} color="#4F46E5" />
-        </View>
+    if (type === "time") {
+      return (
         <TextInput
-          className="flex-1 p-4 text-base"
-          value={value}
+          {...commonProps}
           onChangeText={onChangeText}
-          multiline={multiline}
-          numberOfLines={multiline ? 4 : 1}
-          placeholderTextColor="#9CA3AF"
-          style={{
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.05,
-            shadowRadius: 2,
-          }}
+          maxLength={11}
+          keyboardType="numbers-and-punctuation"
         />
+      );
+    }
+
+    if (type === "phone") {
+      return (
+        <TextInput
+          {...commonProps}
+          onChangeText={(text) => {
+            const numbersOnly = text.replace(/[^0-9]/g, "");
+            let formattedNumber = numbersOnly;
+            if (numbersOnly.length >= 3) {
+              formattedNumber = `${numbersOnly.slice(0, 3)} ${numbersOnly.slice(
+                3
+              )}`;
+            }
+            if (numbersOnly.length >= 6) {
+              formattedNumber = `${formattedNumber.slice(
+                0,
+                7
+              )} ${numbersOnly.slice(6)}`;
+            }
+            onChangeText(formattedNumber);
+          }}
+          maxLength={12}
+          keyboardType="phone-pad"
+        />
+      );
+    }
+
+    return (
+      <TextInput
+        {...commonProps}
+        onChangeText={onChangeText}
+        multiline={multiline}
+        numberOfLines={multiline ? 4 : 1}
+      />
+    );
+  };
+
+  return (
+    <View className="mb-6">
+      <Text className="text-gray-800 text-base font-semibold mb-2">
+        {label}
+      </Text>
+      <View className="flex-row items-center border border-gray-200 rounded-xl bg-white shadow-sm">
+        <View className={baseIconContainerStyle}>
+          <Ionicons name={icon} size={22} color="#4F46E5" />
+        </View>
+        {renderInput()}
       </View>
     </View>
   );
+};
+
+const ServiceItem = ({ name, price, onDelete }) => (
+  <View className="flex-row justify-between items-center py-4 border-b border-gray-100">
+    <View className="flex-row items-center flex-1">
+      <View className="w-2.5 h-2.5 rounded-full bg-indigo-600 mr-3" />
+      <Text className="text-base text-gray-800 font-medium">{name}</Text>
+    </View>
+    <Text className="text-base font-semibold text-indigo-600 mr-4">
+      {price}₺
+    </Text>
+    <TouchableOpacity
+      onPress={onDelete}
+      className="p-2.5 bg-gray-50 rounded-lg"
+      activeOpacity={0.7}
+    >
+      <Ionicons name="trash-outline" size={20} color="#4F46E5" />
+    </TouchableOpacity>
+  </View>
+);
+
+const Presentation = () => {
+  const [barberData, setBarberData] = useState({
+    name: "Ahmet Berber",
+    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    experience: "15 yıl",
+    specialty: "Saç & Sakal Kesimi",
+    workingHours: "09:00 - 21:00",
+    location: "İstanbul, Kadıköy",
+    phone: "0532 123 45 67",
+    description: "Profesyonel berber hizmeti",
+    services: [
+      { name: "Saç Kesimi", price: "100" },
+      { name: "Sakal Kesimi", price: "50" },
+      { name: "Saç & Sakal", price: "140" },
+      { name: "Çocuk Saç Kesimi", price: "70" },
+    ],
+    workDays: [
+      "Pazartesi",
+      "Salı",
+      "Çarşamba",
+      "Perşembe",
+      "Cuma",
+      "Cumartesi",
+    ],
+    rating: 4.8,
+    reviewCount: 127,
+  });
+
+  const [newService, setNewService] = useState({ name: "", price: "" });
 
   const handleSave = () => {
     console.log("Kaydedilen veriler:", barberData);
@@ -75,31 +157,43 @@ const Presentation = () => {
     }
   };
 
+  const deleteService = (index) => {
+    setBarberData((prev) => ({
+      ...prev,
+      services: prev.services.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateBarberData = (field, value) => {
+    setBarberData((prev) => ({ ...prev, [field]: value }));
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <StatusBar barStyle="light-content" />
       <ScrollView className="flex-1">
-        <View className="relative h-[250px] bg-gradient-to-r from-[#4F46E5] to-[#6366F1]">
-          <View className="absolute -bottom-24 w-full px-6">
-            <View className="bg-white rounded-3xl p-8 shadow-xl">
+        <View className="h-[240px] bg-gradient-to-r from-indigo-700 to-indigo-500">
+          <View className="absolute -bottom-24 w-full px-5">
+            <View className="bg-white rounded-2xl p-7 shadow-xl">
               <View className="items-center">
                 <View className="relative">
                   <Image
-                    source={{
-                      uri: barberData.image || "https://placeholder.com/150",
-                    }}
-                    className="w-28 h-28 rounded-full border-4 border-white mb-3"
+                    source={{ uri: barberData.image }}
+                    className="w-32 h-32 rounded-full border-4 border-white shadow-lg"
                   />
-                  <TouchableOpacity className="absolute bottom-2 right-0 bg-[#4F46E5] p-2 rounded-full">
-                    <Ionicons name="camera" size={18} color="white" />
+                  <TouchableOpacity
+                    className="absolute bottom-1 right-1 bg-indigo-600 p-3 rounded-full shadow-lg"
+                    activeOpacity={0.8}
+                  >
+                    <Ionicons name="camera" size={20} color="white" />
                   </TouchableOpacity>
                 </View>
-                <Text className="text-2xl font-bold text-gray-900 mt-2">
-                  {barberData.name || "Berber Adı"}
+                <Text className="text-2xl font-bold text-gray-900 mt-4">
+                  {barberData.name}
                 </Text>
-                <View className="flex-row items-center mt-2 bg-gray-50 px-4 py-2 rounded-full">
-                  <Ionicons name="star" size={18} color="#FFB800" />
-                  <Text className="ml-1 text-gray-700 font-medium">
+                <View className="flex-row items-center mt-3 bg-gray-50 px-5 py-2 rounded-full shadow-sm">
+                  <Ionicons name="star" size={20} color="#FFB800" />
+                  <Text className="ml-2 text-base font-medium text-gray-700">
                     {barberData.rating} ({barberData.reviewCount} değerlendirme)
                   </Text>
                 </View>
@@ -108,10 +202,10 @@ const Presentation = () => {
           </View>
         </View>
 
-        <View className="mt-28 px-6">
-          <View className="bg-white rounded-3xl p-6 border-gray-100 mb-6">
+        <View className="mt-28 px-5 space-y-6">
+          <View className="bg-white rounded-2xl p-6 shadow-sm">
             <View className="flex-row items-center mb-6">
-              <View className="w-1 h-6 bg-[#4F46E5] rounded-full mr-3" />
+              <View className="w-1 h-7 bg-indigo-600 rounded-full mr-3" />
               <Text className="text-xl font-bold text-gray-900">
                 Temel Bilgiler
               </Text>
@@ -119,32 +213,32 @@ const Presentation = () => {
             <InputField
               label="İsim"
               value={barberData.name}
-              onChangeText={(text) =>
-                setBarberData((prev) => ({ ...prev, name: text }))
-              }
+              onChangeText={(text) => updateBarberData("name", text)}
               icon="person"
+              placeholder="Berber adını giriniz"
+              type="text"
             />
             <InputField
               label="Deneyim"
               value={barberData.experience}
-              onChangeText={(text) =>
-                setBarberData((prev) => ({ ...prev, experience: text }))
-              }
+              onChangeText={(text) => updateBarberData("experience", text)}
               icon="time"
+              placeholder="Deneyim süresini giriniz"
+              type="text"
             />
             <InputField
               label="Uzmanlık"
               value={barberData.specialty}
-              onChangeText={(text) =>
-                setBarberData((prev) => ({ ...prev, specialty: text }))
-              }
+              onChangeText={(text) => updateBarberData("specialty", text)}
               icon="ribbon"
+              placeholder="Uzmanlık alanını giriniz"
+              type="text"
             />
           </View>
 
-          <View className="bg-white rounded-3xl p-6 border-gray-100 mb-6">
+          <View className="bg-white rounded-2xl p-6 shadow-sm">
             <View className="flex-row items-center mb-6">
-              <View className="w-1 h-6 bg-[#4F46E5] rounded-full mr-3" />
+              <View className="w-1 h-7 bg-indigo-600 rounded-full mr-3" />
               <Text className="text-xl font-bold text-gray-900">
                 İletişim Bilgileri
               </Text>
@@ -152,33 +246,33 @@ const Presentation = () => {
             <InputField
               label="Çalışma Saatleri"
               value={barberData.workingHours}
-              onChangeText={(text) =>
-                setBarberData((prev) => ({ ...prev, workingHours: text }))
-              }
+              onChangeText={(text) => updateBarberData("workingHours", text)}
               icon="time"
+              placeholder="Örn: 09:00 - 21:00"
+              type="time"
             />
             <InputField
               label="Konum"
               value={barberData.location}
-              onChangeText={(text) =>
-                setBarberData((prev) => ({ ...prev, location: text }))
-              }
+              onChangeText={(text) => updateBarberData("location", text)}
               icon="location"
+              placeholder="Adres bilgilerini giriniz"
+              type="text"
             />
             <InputField
               label="Telefon"
               value={barberData.phone}
-              onChangeText={(text) =>
-                setBarberData((prev) => ({ ...prev, phone: text }))
-              }
+              onChangeText={(text) => updateBarberData("phone", text)}
               icon="call"
+              placeholder="Telefon numaranızı giriniz"
+              type="phone"
             />
           </View>
 
-          <View className="bg-white rounded-3xl p-6  mb-6">
+          <View className="bg-white rounded-2xl p-6 shadow-sm">
             <View className="flex-row items-center justify-between mb-6">
               <View className="flex-row items-center">
-                <View className="w-1 h-6 bg-[#4F46E5] rounded-full mr-3" />
+                <View className="w-1 h-7 bg-indigo-600 rounded-full mr-3" />
                 <Text className="text-xl font-bold text-gray-900">
                   Hizmetler ve Fiyatlar
                 </Text>
@@ -186,25 +280,16 @@ const Presentation = () => {
             </View>
 
             {barberData.services.map((service, index) => (
-              <View
+              <ServiceItem
                 key={index}
-                className="flex-row justify-between items-center py-4 border-b border-gray-100"
-              >
-                <View className="flex-row items-center">
-                  <View className="w-2 h-2 rounded-full bg-[#4F46E5] mr-3" />
-                  <Text className="text-base text-gray-800">
-                    {service.name}
-                  </Text>
-                </View>
-                <Text className="text-base font-semibold text-[#4F46E5]">
-                  {service.price}₺
-                </Text>
-              </View>
+                {...service}
+                onDelete={() => deleteService(index)}
+              />
             ))}
 
-            <View className="flex-row mt-6">
+            <View className="flex-row mt-5 mb-4">
               <TextInput
-                className="flex-1 border-2 border-gray-100 rounded-2xl p-4 mr-2 bg-gray-50"
+                className="flex-1 border border-gray-200 rounded-xl p-4 mr-2 bg-gray-50 text-base"
                 placeholder="Hizmet Adı"
                 value={newService.name}
                 onChangeText={(text) =>
@@ -212,7 +297,7 @@ const Presentation = () => {
                 }
               />
               <TextInput
-                className="w-32 border-2 border-gray-100 rounded-2xl p-4 mr-2 bg-gray-50"
+                className="w-36 border border-gray-200 rounded-xl p-4 mr-2 bg-gray-50 text-base"
                 placeholder="Fiyat"
                 value={newService.price}
                 onChangeText={(text) =>
@@ -222,7 +307,8 @@ const Presentation = () => {
               />
               <TouchableOpacity
                 onPress={addService}
-                className="bg-[#4F46E5] p-4 rounded-2xl"
+                className="bg-indigo-600 p-4 rounded-xl items-center justify-center shadow-sm"
+                activeOpacity={0.8}
               >
                 <Ionicons name="add" size={24} color="white" />
               </TouchableOpacity>
@@ -230,8 +316,9 @@ const Presentation = () => {
           </View>
 
           <TouchableOpacity
-            className="bg-gradient-to-r from-[#4F46E5] to-[#6366F1] py-4 rounded-2xl mb-8 border-gray-100"
+            className="bg-indigo-600 py-4 rounded-xl mb-8 mt-4"
             onPress={handleSave}
+            activeOpacity={0.8}
           >
             <Text className="text-white text-center font-bold text-lg">
               Değişiklikleri Kaydet

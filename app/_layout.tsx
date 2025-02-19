@@ -6,7 +6,6 @@ import "react-native-reanimated";
 import "../global.css";
 import { tokenCache } from "@/cache";
 import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
-import { NavigationContainer } from "@react-navigation/native";
 
 SplashScreen.preventAutoHideAsync();
 

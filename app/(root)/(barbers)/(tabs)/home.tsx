@@ -6,67 +6,12 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  StatusBar,
 } from "react-native";
 import { Star, Calendar, Users, Clock, Plus } from "lucide-react-native";
 import { useUser } from "@clerk/clerk-expo";
-
 import { router } from "expo-router";
-
-const barberInfo = {
-  name: "Ahmet Yılmaz",
-  rating: 4.8,
-  totalCustomers: 128,
-  todayAppointments: 8,
-  imageUrl: "https://via.placeholder.com/150",
-};
-
-const todaysAppointments = [
-  {
-    time: "09:00",
-    customerName: "Mehmet Kaya",
-    service: "Saç Kesimi + Sakal",
-    status: "Tamamlandı",
-  },
-  {
-    time: "10:00",
-    customerName: "Ali Demir",
-    service: "Saç Kesimi",
-    status: "Tamamlandı",
-  },
-  {
-    time: "11:30",
-    customerName: "Mustafa Çelik",
-    service: "Sakal Düzeltme",
-    status: "Devam Ediyor",
-  },
-  {
-    time: "14:00",
-    customerName: "Kerem Can",
-    service: "Sıcak Havlu Tıraşı",
-    status: "Yaklaşan",
-  },
-];
-
-const recentCustomers = [
-  {
-    name: "Mehmet Kaya",
-    visits: 12,
-    lastVisit: "2 gün önce",
-    image: "https://via.placeholder.com/50",
-  },
-  {
-    name: "Ali Demir",
-    visits: 8,
-    lastVisit: "1 hafta önce",
-    image: "https://via.placeholder.com/50",
-  },
-  {
-    name: "Mustafa Çelik",
-    visits: 5,
-    lastVisit: "2 hafta önce",
-    image: "https://via.placeholder.com/50",
-  },
-];
+import { recentCustomers, barberInfo, todaysAppointments } from "@/constants";
 
 const getStatusColor = (status: string) => {
   if (status === "Tamamlandı") return "#10B981";
@@ -97,7 +42,7 @@ const BarberDashboard = () => {
                     source={{
                       uri: user?.imageUrl || "https://via.placeholder.com/150",
                     }}
-                    className="w-20 h-20 rounded-full shadow-lg border-2 border-white"
+                    className="w-24 h-24 rounded-full shadow-lg border-2 border-white"
                   />
                 </TouchableOpacity>
                 <View className="ml-4">
@@ -125,23 +70,42 @@ const BarberDashboard = () => {
           {/* Stats Cards */}
           <View className="px-6 -mt-6">
             <View className="flex-row justify-between gap-4">
-              <View className="flex-1 bg-white p-4 rounded-2xl shadow-sm">
-                <View className="bg-indigo-50 w-10 h-10 rounded-full items-center justify-center mb-2">
-                  <Calendar size={20} color="#4F46E5" />
+              <View className="flex-1 bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                <View className="flex-row items-center justify-between mb-3">
+                  <View className="bg-indigo-100 w-14 h-14 rounded-2xl items-center justify-center">
+                    <Calendar size={28} color="#4F46E5" />
+                  </View>
+                  <View className="flex-row items-baseline">
+                    <Text className="text-4xl font-bold text-[#4F46E5]">
+                      {barberInfo.todayAppointments}
+                    </Text>
+                    <Text className="text-gray-700 text-sm font-medium ml-1">
+                      Adet
+                    </Text>
+                  </View>
                 </View>
-                <Text className="text-2xl font-bold">
-                  {barberInfo.todayAppointments}
+
+                <Text className="text-gray-700 text-sm font-medium">
+                  Bugünkü Randevu
                 </Text>
-                <Text className="text-gray-600 text-sm">Bugünkü Randevu</Text>
               </View>
-              <View className="flex-1 bg-white p-4 rounded-2xl shadow-sm">
-                <View className="bg-indigo-50 w-10 h-10 rounded-full items-center justify-center mb-2">
-                  <Users size={20} color="#4F46E5" />
+              <View className="flex-1 bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+                <View className="flex-row items-center justify-between mb-3">
+                  <View className="bg-indigo-100 w-14 h-14 rounded-2xl items-center justify-center">
+                    <Users size={28} color="#4F46E5" />
+                  </View>
+                  <View className="flex-row items-baseline">
+                    <Text className="text-4xl font-bold text-[#4F46E5]">
+                      {barberInfo.totalCustomers}
+                    </Text>
+                    <Text className="text-gray-700 text-sm font-medium ml-1">
+                      Adet
+                    </Text>
+                  </View>
                 </View>
-                <Text className="text-2xl font-bold">
-                  {barberInfo.totalCustomers}
+                <Text className="text-gray-700 text-sm font-medium">
+                  Toplam Müşteri
                 </Text>
-                <Text className="text-gray-600 text-sm">Toplam Müşteri</Text>
               </View>
             </View>
           </View>
@@ -149,7 +113,7 @@ const BarberDashboard = () => {
           {/* Appointments Section */}
           <View className="px-6 mt-8">
             <View className="flex-row items-center justify-between mb-4">
-              <Text className="text-xl font-bold text-gray-900">
+              <Text className="text-md font-bold text-[#4F46E5] bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
                 Günün Programı
               </Text>
               <TouchableOpacity
@@ -204,7 +168,7 @@ const BarberDashboard = () => {
           {/* Recent Customers Section */}
           <View className="px-6 mt-8">
             <View className="flex-row items-center justify-between mb-4">
-              <Text className="text-xl font-bold text-gray-900">
+              <Text className="text-md font-bold text-[#4F46E5] bg-indigo-50 px-4 py-2 rounded-xl border border-indigo-100">
                 Son Müşteriler
               </Text>
               <TouchableOpacity>

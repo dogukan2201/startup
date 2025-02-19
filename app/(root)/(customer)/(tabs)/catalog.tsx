@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { Star, Filter } from "lucide-react-native";
+import { Star, Filter, SlidersHorizontal } from "lucide-react-native";
 import { Models } from "@/constants";
 import { CategoryButton } from "@/components/CategoryButton";
 import { ModelCard } from "@/components/ModelCard";
@@ -51,7 +51,7 @@ const HairModels = () => {
               className="bg-indigo-600 px-3 py-3 rounded-2xl flex-row items-center"
             >
               {showOnlyFavorites ? (
-                <Filter size={20} color="white" />
+                <SlidersHorizontal size={20} color="white" />
               ) : (
                 <Star size={20} color="white" />
               )}

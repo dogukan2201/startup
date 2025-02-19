@@ -537,3 +537,80 @@ export const APPOINTMENTS = [
     notes: "Cilt hassasiyeti var",
   },
 ];
+export const STATUS_COLORS = {
+  Tamamlandı: "#10B981",
+  "Devam Ediyor": "#3B82F6",
+  Yaklaşan: "#F59E0B",
+  default: "#6B7280",
+};
+
+export const STATUS_OPTIONS = [
+  "Tümü",
+  "Yaklaşan",
+  "Devam Ediyor",
+  "Tamamlandı",
+];
+export const TIME_FILTERS = ["Tümü", "Öğleden Önce", "Öğleden Sonra"];
+export const PRICE_FILTERS = ["Tümü", "0-100₺", "100-200₺", "200₺+"];
+export const SERVICE_FILTERS = [
+  "Tümü",
+  "Saç Kesimi",
+  "Sakal Tıraşı",
+  "Saç Boyama",
+  "Cilt Bakımı",
+];
+export const barberInfo = {
+  name: "Ahmet Yılmaz",
+  rating: 4.8,
+  totalCustomers: 128,
+  todayAppointments: 8,
+  imageUrl: "https://via.placeholder.com/150",
+};
+
+export const todaysAppointments = [
+  {
+    time: "09:00",
+    customerName: "Mehmet Kaya",
+    service: "Saç Kesimi + Sakal",
+    status: "Tamamlandı",
+  },
+  {
+    time: "10:00",
+    customerName: "Ali Demir",
+    service: "Saç Kesimi",
+    status: "Tamamlandı",
+  },
+  {
+    time: "11:30",
+    customerName: "Mustafa Çelik",
+    service: "Sakal Düzeltme",
+    status: "Devam Ediyor",
+  },
+  {
+    time: "14:00",
+    customerName: "Kerem Can",
+    service: "Sıcak Havlu Tıraşı",
+    status: "Yaklaşan",
+  },
+];
+
+export const recentCustomers = [
+  {
+    name: "Mehmet Kaya",
+    visits: 12,
+    lastVisit: "2 gün önce",
+    image: "https://via.placeholder.com/50",
+  },
+  {
+    name: "Ali Demir",
+    visits: 8,
+    lastVisit: "1 hafta önce",
+    image: "https://via.placeholder.com/50",
+  },
+  {
+    name: "Mustafa Çelik",
+    visits: 5,
+    lastVisit: "2 hafta önce",
+    image: "https://via.placeholder.com/50",
+  },
+];
