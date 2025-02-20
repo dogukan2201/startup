@@ -99,7 +99,6 @@ const ProfileScreen = () => {
             label="Telefon"
             value={user?.phoneNumbers[0]?.phoneNumber}
           />
-          <ProfileInfoItem icon={Phone} label="Adres" value="Not available" />
         </View>
 
         <View className="px-6 pb-8">

@@ -9,7 +9,7 @@ const getStatusColor = (status: string) => {
 export const renderAppointmentCard = (item) => (
   <TouchableOpacity
     key={item.id}
-    className="bg-white rounded-2xl shadow-sm p-4 mb-4 mt-2 border border-gray-200 "
+    className="bg-white rounded-2xl  p-4 mb-4 mt-2 border border-gray-300  "
   >
     <View className="flex-row items-center justify-between mb-3">
       <View className="flex-row items-center space-x-2">
