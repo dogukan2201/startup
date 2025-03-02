@@ -16,7 +16,7 @@ import React, { useState } from "react";
 import { images } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import Providers from "@/components/Providers";
+import Providers from "@/components/CommonComponents/Providers";
 import { useSignIn, useClerk } from "@clerk/clerk-expo";
 
 const SignIn = () => {
@@ -39,7 +39,7 @@ const SignIn = () => {
 
       if (signInAttempt.status === "complete") {
         await setActive({ session: signInAttempt.createdSessionId });
-        router.replace("/(root)/(barbers)/(tabs)/home");
+        router.replace("/(root)/(customer)/(tabs)/home");
       } else {
         console.error(JSON.stringify(signInAttempt, null, 2));
       }
@@ -68,7 +68,7 @@ const SignIn = () => {
 
         <View className="px-6 -mt-10 rounded-t-[30px] bg-white pt-8 pb-10">
           <Text className="text-3xl text-[#4F46E5] font-bold mb-2">
-            Welcome Back
+            Tekrar Hoş Geldiniz
           </Text>
           <Text className="text-[#4F46E5] text-base mb-8">
             Sign in to continue

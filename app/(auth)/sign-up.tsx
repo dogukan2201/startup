@@ -16,7 +16,7 @@ import React, { useState } from "react";
 import { images } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import Providers from "@/components/Providers";
+import Providers from "@/components/CommonComponents/Providers";
 import { useSignUp } from "@clerk/clerk-expo";
 
 const SignUp = () => {

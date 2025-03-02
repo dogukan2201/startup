@@ -10,8 +10,8 @@ import { Filter as FilterIcon } from "lucide-react-native";
 import { barbers } from "@/constants";
 import React, { useState, useMemo } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import FilterModal from "@/components/Filter";
-import { BarberCard } from "@/components/RenderCard";
+import FilterModal from "@/components/CustomerComponents/Filter";
+import { BarberCard } from "@/components/CustomerComponents/RenderCard";
 import { TURKISH_CHAR_MAP } from "@/constants";
 const Barbers = () => {
   const [searchQuery, setSearchQuery] = useState("");

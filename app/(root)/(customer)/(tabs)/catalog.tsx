@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { Star, Filter, SlidersHorizontal } from "lucide-react-native";
+import { Star, SlidersHorizontal } from "lucide-react-native";
 import { Models } from "@/constants";
-import { CategoryButton } from "@/components/CategoryButton";
-import { ModelCard } from "@/components/ModelCard";
+import { CategoryButton } from "@/components/CustomerComponents/CategoryButton";
+import { ModelCard } from "@/components/CustomerComponents/ModelCard";
 import { CATEGORIES } from "@/constants";
 
 const HairModels = () => {

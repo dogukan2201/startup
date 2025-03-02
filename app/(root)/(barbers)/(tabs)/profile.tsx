@@ -16,7 +16,7 @@ import { router } from "expo-router";
 import { MenuButton } from "@/components/ProfileComponents/ProfileMenuButton";
 import { ProfileInfoItem } from "@/components/ProfileComponents/ProfileInfoItem";
 import ProfileHeader from "@/components/ProfileComponents/ProfileHeader";
-import Title from "@/components/Tittle";
+import Title from "@/components/CommonComponents/Tittle";
 
 const ProfileScreen = () => {
   const { user } = useUser();

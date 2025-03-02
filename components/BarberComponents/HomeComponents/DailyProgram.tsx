@@ -2,7 +2,7 @@ import { Clock } from "lucide-react-native";
 import { View, Text, TouchableOpacity } from "react-native";
 import { todaysAppointments } from "@/constants";
 import { router } from "expo-router";
-import Tittle from "../../Tittle";
+import Tittle from "../../CommonComponents/Tittle";
 
 const getStatusColor = (status: string) => {
   const statusColors: { [key: string]: string } = {

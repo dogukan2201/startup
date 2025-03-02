@@ -7,7 +7,7 @@ import {
   Animated,
   StatusBar,
 } from "react-native";
-
+import CreateAppointment from "@/components/BarberComponents/AppointmentsComponents/CreateAppointment";
 import { Calendar } from "react-native-calendars";
 import { Plus } from "lucide-react-native";
 import AppointmentFilterModal from "@/components/BarberComponents/AppointmentsComponents/AppointmentCalendar";
@@ -28,13 +28,16 @@ const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().split("T")[0]
   );
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [appointments, setAppointments] = useState({});
-  const [showCalendar, setShowCalendar] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState("Tümü");
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [timeFilter, setTimeFilter] = useState("Tümü");
-  const [priceFilter, setPriceFilter] = useState("Tümü");
-  const [serviceFilter, setServiceFilter] = useState("Tümü");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [filters, setFilters] = useState({
+    time: "Tümü",
+    price: "Tümü",
+    service: "Tümü",
+  });
   const [searchQuery, setSearchQuery] = useState("");
   const calendarHeight = useRef(new Animated.Value(0)).current;
 
@@ -52,9 +55,9 @@ const Appointment = () => {
 
     filteredAppointments = filterAppointments(
       filteredAppointments,
-      timeFilter,
-      priceFilter,
-      serviceFilter,
+      filters.time,
+      filters.price,
+      filters.service,
       searchQuery
     );
 
@@ -137,19 +140,27 @@ const Appointment = () => {
 
       <ScrollView className="flex-1">{renderAppointments()}</ScrollView>
 
-      <TouchableOpacity className="absolute bottom-6 right-6 bg-[#4F46E5] w-14 h-14 rounded-full items-center justify-center">
+      <TouchableOpacity
+        onPress={() => setIsModalVisible(true)}
+        className="absolute bottom-6 right-6 bg-[#4F46E5] w-14 h-14 rounded-full items-center justify-center"
+      >
         <Plus color="white" size={32} />
       </TouchableOpacity>
-
+      <CreateAppointment
+        isVisible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+      />
       <AppointmentFilterModal
         visible={showFilterModal}
         onDismiss={() => setShowFilterModal(false)}
-        timeFilter={timeFilter}
-        setTimeFilter={setTimeFilter}
-        priceFilter={priceFilter}
-        setPriceFilter={setPriceFilter}
-        serviceFilter={serviceFilter}
-        setServiceFilter={setServiceFilter}
+        timeFilter={filters.time}
+        setTimeFilter={(time) => setFilters((prev) => ({ ...prev, time }))}
+        priceFilter={filters.price}
+        setPriceFilter={(price) => setFilters((prev) => ({ ...prev, price }))}
+        serviceFilter={filters.service}
+        setServiceFilter={(service) =>
+          setFilters((prev) => ({ ...prev, service }))
+        }
       />
     </SafeAreaView>
   );

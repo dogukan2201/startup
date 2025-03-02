@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SignedIn, useUser } from "@clerk/clerk-expo";
 import {
   SafeAreaView,
@@ -10,12 +11,11 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { barbers, SERVICES } from "@/constants";
 import { MapPin, Scissors } from "lucide-react-native";
-import { useState } from "react";
-import { AppointmentCard } from "@/components/AppointmentCard";
-import { ServiceCard } from "@/components/ServiceCard";
-import { PopulerBarberCard } from "@/components/PopulerBarberCard";
-import { UserProfile } from "@/components/HomeUserProfile";
-import { QuickAccessCard } from "@/components/QuickAccessCard";
+import { AppointmentCard } from "@/components/CustomerComponents/AppointmentCard";
+import { ServiceCard } from "@/components/CustomerComponents/ServiceCard";
+import { PopulerBarberCard } from "@/components/CustomerComponents/PopulerBarberCard";
+import { UserProfile } from "@/components/CustomerComponents/HomeUserProfile";
+import { QuickAccessCard } from "@/components/CustomerComponents/QuickAccessCard";
 
 export default function Home() {
   const { user } = useUser();

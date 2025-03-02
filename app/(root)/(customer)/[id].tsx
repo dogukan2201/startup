@@ -12,7 +12,7 @@ import { useLocalSearchParams } from "expo-router";
 import { barbers } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Star } from "lucide-react-native";
-import Appointment from "@/components/Appointment";
+import Appointment from "@/components/CustomerComponents/Appointment";
 import { days } from "@/constants";
 const BarberShowInfo = () => {
   const { id } = useLocalSearchParams();
