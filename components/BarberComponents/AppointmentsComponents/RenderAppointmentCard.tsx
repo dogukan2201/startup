@@ -22,7 +22,7 @@ export const renderAppointmentCard = (item) => (
       </View>
       <View
         style={{ backgroundColor: `${getStatusColor(item.status)}15` }}
-        className="px-4 py-2 rounded-full"
+        className="px-3 py-1 rounded-full"
       >
         <Text
           style={{ color: getStatusColor(item.status) }}

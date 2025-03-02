@@ -1,13 +1,5 @@
 "use client";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { View, SafeAreaView, ScrollView, Alert } from "react-native";
 import React, { useState } from "react";
 import { useClerk, useUser } from "@clerk/clerk-expo";
 import {
@@ -16,14 +8,15 @@ import {
   Phone,
   LogOut,
   Settings,
-  Camera,
   Shield,
   Bell,
   HelpCircle,
 } from "lucide-react-native";
 import { router } from "expo-router";
-import { MenuButton } from "@/components/ProfileMenuButton";
-import { ProfileInfoItem } from "@/components/ProfileInfoItem";
+import { MenuButton } from "@/components/ProfileComponents/ProfileMenuButton";
+import { ProfileInfoItem } from "@/components/ProfileComponents/ProfileInfoItem";
+import ProfileHeader from "@/components/ProfileComponents/ProfileHeader";
+import Title from "@/components/Tittle";
 
 const ProfileScreen = () => {
   const { user } = useUser();
@@ -64,30 +57,10 @@ const ProfileScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       <ScrollView className="flex-1">
-        <View className="items-center mt-8 mb-6 ">
-          <View className="relative">
-            <Image
-              source={{
-                uri: user?.imageUrl || "https://via.placeholder.com/150",
-              }}
-              className="w-28 h-28 rounded-full shadow-lg border-2 border-[#4F46E5]"
-            />
-            <TouchableOpacity className="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-lg">
-              <Camera color="#4F46E5" size={20} />
-            </TouchableOpacity>
-          </View>
-          <Text className="mt-4 text-2xl font-bold text-gray-900">
-            {user?.fullName || "Berber"}
-          </Text>
-          <Text className="text-gray-500 font-medium">
-            {user?.emailAddresses[0].emailAddress}
-          </Text>
-        </View>
+        <ProfileHeader user={user} />
 
         <View className="px-6 py-4">
-          <Text className="text-lg font-bold text-gray-900 mb-4">
-            Profil Bilgileri
-          </Text>
+          <Title title="Profil Bilgileri" />
           <ProfileInfoItem icon={User} label="İsim" value={user?.fullName} />
           <ProfileInfoItem
             icon={Mail}
@@ -102,10 +75,7 @@ const ProfileScreen = () => {
         </View>
 
         <View className="px-6 pb-8">
-          <Text className="text-lg font-bold text-gray-900 mb-4">
-            Hesap Ayarları
-          </Text>
-
+          <Title title="Hesap Ayarları" />
           <MenuButton
             icon={Bell}
             title="Bildirim Ayarları"

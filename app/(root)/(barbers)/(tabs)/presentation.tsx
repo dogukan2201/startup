@@ -173,6 +173,11 @@ const Presentation = () => {
 
   const addService = () => {
     if (newService.name && newService.price) {
+      if (barberData.services.find((s) => s.name === newService.name)) {
+        alert("Bu hizmet zaten ekli.");
+        setNewService({ name: "", price: "" });
+        return;
+      }
       setBarberData((prev) => ({
         ...prev,
         services: [...prev.services, newService],
@@ -253,16 +258,17 @@ const Presentation = () => {
         <View className="mt-8 px-4 space-y-4">
           <View className=" p-5 rounded-xl  mt-4">
             <View className="flex-row items-center mb-4">
-              <Text className="text-lg font-bold text-[#4F46E5] bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100">
+              <Text className="text-xl font-bold text-[#4F46E5]">
                 Temel Bilgiler
               </Text>
             </View>
+
             <InputField
-              label="İsim"
+              label="İşletme ya da Şahsi İsim"
               value={barberData.name}
               onChangeText={(text) => updateBarberData("name", text)}
               icon="person"
-              placeholder="Berber adını giriniz"
+              placeholder="Dükkan ya da şahsi isminizi giriniz"
               type="text"
             />
             <InputField
@@ -285,7 +291,7 @@ const Presentation = () => {
 
           <View className="p-5 rounded-xl">
             <View className="flex-row items-center mb-4">
-              <Text className="text-lg font-bold text-[#4F46E5] bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100">
+              <Text className="text-xl font-bold text-[#4F46E5]">
                 Çalışma Günleri
               </Text>
             </View>
@@ -331,7 +337,7 @@ const Presentation = () => {
 
           <View className="p-5">
             <View className="flex-row items-center mb-4">
-              <Text className="text-lg font-bold text-[#4F46E5] bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-100">
+              <Text className="text-xl font-bold text-[#4F46E5]">
                 İletişim Bilgileri
               </Text>
             </View>
@@ -409,7 +415,7 @@ const Presentation = () => {
 
           <View className="p-5">
             <View className="flex-row items-center mb-4">
-              <Text className="text-lg font-bold text-[#4F46E5] bg-indigo-50 px-3 py-1.5 rounded-lg">
+              <Text className="text-xl font-bold text-[#4F46E5]">
                 Hizmetler ve Fiyatlar
               </Text>
             </View>

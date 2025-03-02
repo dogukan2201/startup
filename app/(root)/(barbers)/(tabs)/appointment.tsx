@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   SafeAreaView,
@@ -6,20 +7,22 @@ import {
   Animated,
   StatusBar,
 } from "react-native";
-import React, { useState, useEffect, useRef } from "react";
+
 import { Calendar } from "react-native-calendars";
 import { Plus } from "lucide-react-native";
-import { APPOINTMENTS } from "@/constants";
-import AppointmentFilterModal from "@/components/AppointmentCalendar";
-import { renderEmptyState } from "@/components/EmptyState";
-import { renderFilterButton } from "@/components/RenderFilterButton";
-import { renderAppointmentCard } from "@/components/RenderAppointmentCard";
-
-//Bileşen importları
-import { AppointmentHeader } from "@/components/AppointmentHeader";
-import { AppointmentSearch } from "@/components/AppointmentSearch";
-import { DateSelector } from "@/components/DateSelector";
-import { StatusFilter } from "@/components/StatusFilter";
+import AppointmentFilterModal from "@/components/BarberComponents/AppointmentsComponents/AppointmentCalendar";
+import { renderEmptyState } from "@/components/BarberComponents/AppointmentsComponents/EmptyState";
+import { renderAppointmentCard } from "@/components/BarberComponents/AppointmentsComponents/RenderAppointmentCard";
+import { AppointmentHeader } from "@/components/BarberComponents/AppointmentsComponents/AppointmentHeader";
+import { AppointmentSearch } from "@/components/BarberComponents/AppointmentsComponents/AppointmentSearch";
+import { DateSelector } from "@/components/BarberComponents/AppointmentsComponents/DateSelector";
+import { StatusFilter } from "@/components/BarberComponents/AppointmentsComponents/StatusFilter";
+import {
+  toggleCalendar,
+  loadAppointments,
+  filterAppointments,
+  formatDate,
+} from "@/components/BarberComponents/AppointmentsComponents/Helpers";
 
 const Appointment = () => {
   const [selectedDate, setSelectedDate] = useState(
@@ -36,62 +39,8 @@ const Appointment = () => {
   const calendarHeight = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    loadAppointments();
+    loadAppointments(setAppointments);
   }, []);
-
-  const toggleCalendar = () => {
-    const toValue = showCalendar ? 0 : 350;
-    Animated.timing(calendarHeight, {
-      toValue,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-    setShowCalendar(!showCalendar);
-  };
-
-  const loadAppointments = () => {
-    const formattedAppointments = APPOINTMENTS.reduce((acc, appointment) => {
-      const { date } = appointment;
-      if (!acc[date]) {
-        acc[date] = [];
-      }
-      acc[date].push(appointment);
-      return acc;
-    }, {});
-    setAppointments(formattedAppointments);
-  };
-
-  const filterAppointments = (appointments) => {
-    return appointments.filter((app) => {
-      const isTimeMatch =
-        timeFilter === "Tümü" ||
-        (timeFilter === "Öğleden Önce"
-          ? parseInt(app.time) < 12
-          : parseInt(app.time) >= 12);
-
-      const price = parseInt(app.price);
-      const isPriceMatch =
-        priceFilter === "Tümü" ||
-        (priceFilter === "0-100₺"
-          ? price <= 100
-          : priceFilter === "100-200₺"
-          ? price > 100 && price <= 200
-          : price > 200);
-
-      const isServiceMatch =
-        serviceFilter === "Tümü" || app.service.includes(serviceFilter);
-
-      const isSearchMatch =
-        !searchQuery ||
-        app.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        app.customerPhone.includes(searchQuery) ||
-        app.service.some((s) =>
-          s.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-
-      return isTimeMatch && isPriceMatch && isServiceMatch && isSearchMatch;
-    });
-  };
 
   const renderAppointments = () => {
     const dayAppointments = appointments[selectedDate] || [];
@@ -101,7 +50,13 @@ const Appointment = () => {
         ? dayAppointments
         : dayAppointments.filter((app) => app.status === selectedStatus);
 
-    filteredAppointments = filterAppointments(filteredAppointments);
+    filteredAppointments = filterAppointments(
+      filteredAppointments,
+      timeFilter,
+      priceFilter,
+      serviceFilter,
+      searchQuery
+    );
 
     if (dayAppointments.length === 0) {
       return renderEmptyState(
@@ -125,23 +80,6 @@ const Appointment = () => {
     );
   };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    if (date.toDateString() === today.toDateString()) return "Bugün";
-    if (date.toDateString() === tomorrow.toDateString()) return "Yarın";
-
-    return date.toLocaleDateString("tr-TR", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  };
-
   return (
     <SafeAreaView className="flex-1 bg-white">
       <StatusBar barStyle="dark-content" />
@@ -156,7 +94,9 @@ const Appointment = () => {
         <DateSelector
           selectedDate={selectedDate}
           showCalendar={showCalendar}
-          toggleCalendar={toggleCalendar}
+          toggleCalendar={() =>
+            toggleCalendar(calendarHeight, showCalendar, setShowCalendar)
+          }
           formatDate={formatDate}
         />
 
@@ -171,7 +111,7 @@ const Appointment = () => {
           current={selectedDate}
           onDayPress={(day) => {
             setSelectedDate(day.dateString);
-            toggleCalendar();
+            toggleCalendar(calendarHeight, showCalendar, setShowCalendar);
           }}
           markedDates={{
             [selectedDate]: { selected: true, selectedColor: "#4F46E5" },

@@ -12,10 +12,8 @@ export const StatusFilter = ({ selectedStatus, setSelectedStatus }) => (
       <TouchableOpacity
         key={status}
         onPress={() => setSelectedStatus(status)}
-        className={`px-4 py-2 rounded-full border mr-2 ${
-          selectedStatus === status
-            ? "bg-indigo-600 border-indigo-600"
-            : "bg-white border-gray-200"
+        className={`px-3 py-1 rounded-full  mr-2 ${
+          selectedStatus === status ? "bg-indigo-600 " : "bg-white "
         }`}
       >
         <Text

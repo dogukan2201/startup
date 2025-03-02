@@ -22,8 +22,8 @@ import {
   HelpCircle,
 } from "lucide-react-native";
 import { router } from "expo-router";
-import { MenuButton } from "@/components/ProfileMenuButton";
-import { ProfileInfoItem } from "@/components/ProfileInfoItem";
+import { MenuButton } from "@/components/ProfileComponents/ProfileMenuButton";
+import { ProfileInfoItem } from "@/components/ProfileComponents/ProfileInfoItem";
 
 const ProfileScreen = () => {
   const { user } = useUser();
